@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -51,11 +52,20 @@ public class Player : MonoBehaviour
     public ParticleSystem rightMotor;
     private bool isMoving;
 
+    public float health;
+    public float maxHealth;
+
+    public Image healthBar;
+    public Image cooldownBar;
+
 
 
 
     void Start()
     {
+        maxHealth = 10f;
+        health = maxHealth;
+
         clickRange = .5f;
 
         moveSpeed = .1f;
@@ -65,22 +75,26 @@ public class Player : MonoBehaviour
 
         timeTillFire = 0; 
 
-        moveSpeedPrice = 10;
+        moveSpeedPrice = 25;
         moveSpeedLevel = 1;
 
-        turnSpeedPrice = 10;
+        turnSpeedPrice = 25;
         turnSpeedLevel = 1;
 
-        fireRatePrice = 10;
+        fireRatePrice = 25;
         fireRateLevel = 1;
 
-        bulletSpeedPrice = 10;
+        bulletSpeedPrice = 25;
         bulletSpeedLevel = 1;
 
     }
 
     void Update()
     {
+        healthBar.fillAmount = health/maxHealth;
+        cooldownBar.fillAmount = timeTillFire / fireRate;
+
+
         if(Input.GetKey(KeyCode.W))
         {
             Vector2 moveDirection = transform.up * moveSpeed;
@@ -192,7 +206,7 @@ public class Player : MonoBehaviour
                 if (points >= moveSpeedPrice)
                 {
                     gc.SpendPoints(moveSpeedPrice);
-                    moveSpeedPrice *= 10;
+                    moveSpeedPrice *= 2;
                     moveSpeedPriceText.text = "Price: " + moveSpeedPrice;
 
                     moveSpeedLevel++;
@@ -208,7 +222,7 @@ public class Player : MonoBehaviour
                 if (points >= turnSpeedPrice)
                 {
                     gc.SpendPoints(turnSpeedPrice);
-                    turnSpeedPrice *= 10;
+                    turnSpeedPrice *= 2;
                     turnSpeedPriceText.text = "Price: " + turnSpeedPrice;
 
                     turnSpeedLevel++;
@@ -223,7 +237,7 @@ public class Player : MonoBehaviour
                 if (points >= fireRatePrice)
                 {
                     gc.SpendPoints(fireRatePrice);
-                    fireRatePrice *= 10;
+                    fireRatePrice *= 2;
                     fireRatePriceText.text = "Price: " + fireRatePrice;
 
                     fireRateLevel++;
@@ -238,7 +252,7 @@ public class Player : MonoBehaviour
                 if (points >= bulletSpeedPrice)
                 {
                     gc.SpendPoints(bulletSpeedPrice);
-                    bulletSpeedPrice *= 10;
+                    bulletSpeedPrice *= 2;
                     bulletSpeedPriceText.text = "Price: " + bulletSpeedPrice;
 
                     bulletSpeedLevel++;
@@ -253,8 +267,12 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.tag == "enemyBullet")
         {
-            Debug.Log("hit");
             Destroy(collision.gameObject);
+            health -= 1f;
+            if (health <= 0)
+            {
+                health = 0;
+            }
         }
     }
 }

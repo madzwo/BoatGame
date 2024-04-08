@@ -504,7 +504,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 796378546398990194}
-  speed: 0.7
+  speed: 0.75
   barrel: {fileID: 86014130237207505}
   barrel2: {fileID: 0}
   barrel3: {fileID: 0}

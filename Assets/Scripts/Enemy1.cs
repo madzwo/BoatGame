@@ -26,7 +26,7 @@ public class Enemy1 : MonoBehaviour
 
     void Start()
     {
-        randomSpeedChange = Random.Range(-0.15f, 0.15f);
+        randomSpeedChange = Random.Range(-0.05f, 0.05f);
         speed += randomSpeedChange;
 
         player = GameObject.FindGameObjectWithTag("player");

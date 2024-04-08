@@ -706,12 +706,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 796378546398990194}
-  speed: 0.5
+  speed: 0.45
   barrel: {fileID: 86014130237207505}
   barrel2: {fileID: 1081160851858996760}
+  barrel3: {fileID: 0}
   bullet: {fileID: 3114137540438425787, guid: c42bb4e14ee6a49b48042fa9e42463ec, type: 3}
   firePoint: {fileID: 2805421931607756377}
   firePoint2: {fileID: 6270370101688752863}
+  firePoint3: {fileID: 0}
   bulletSpeed: 100
   fireRate: 5
 --- !u!50 &796378546398990194

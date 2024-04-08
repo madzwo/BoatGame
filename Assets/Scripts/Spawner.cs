@@ -57,7 +57,11 @@ public class Spawner : MonoBehaviour
             }
             timeTillSpawn = Random.Range(randomSpawnBottomBound, randomSpawnTopBound);
             randomSpawnBottomBound -= 1f;
-            randomSpawnTopBound -= 0.9f;
+            randomSpawnTopBound -= 1f;
+            if(randomSpawnBottomBound <= 0f)
+            {
+                timeTillSpawn = 7f;
+            }
 
         }
         timeTillSpawn -= Time.deltaTime;
